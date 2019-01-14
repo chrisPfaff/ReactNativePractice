@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createDrawerNavigator
+} from "react-navigation";
 import Post from "./Post";
 
 export default class App extends React.Component {
@@ -18,10 +22,39 @@ class Home extends React.Component {
     );
   }
 }
-const Nav = createStackNavigator({
-  Home: { screen: Home },
-  Post: { screen: Post }
-});
+
+class Dashboard extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Dashboard</Text>
+      </View>
+    );
+  }
+}
+
+const AppDrawerNavigator = createDrawerNavigator(
+  { Home: Home, Dashboard: Dashboard },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#39BBD7"
+      }
+    }
+  }
+);
+
+const Nav = createStackNavigator(
+  { Home: { screen: Home } },
+  {
+    defaultNavigationOptions: {
+      title: "Chris' React Native App",
+      headerStyle: {
+        backgroundColor: "#39BBD7"
+      }
+    }
+  }
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -31,4 +64,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppContainer = createAppContainer(Nav);
+const AppContainer = createAppContainer(AppDrawerNavigator);

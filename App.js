@@ -5,7 +5,7 @@ import {
   createAppContainer,
   createDrawerNavigator
 } from "react-navigation";
-import Post from "./Post";
+import Img from "./Img";
 
 export default class App extends React.Component {
   render() {
@@ -33,28 +33,11 @@ class Dashboard extends React.Component {
   }
 }
 
-const AppDrawerNavigator = createDrawerNavigator(
-  { Home: Home, Dashboard: Dashboard },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#39BBD7"
-      }
-    }
-  }
-);
-
-const Nav = createStackNavigator(
-  { Home: { screen: Home } },
-  {
-    defaultNavigationOptions: {
-      title: "Chris' React Native App",
-      headerStyle: {
-        backgroundColor: "#39BBD7"
-      }
-    }
-  }
-);
+const AppDrawerNavigator = createDrawerNavigator({
+  Home: Home,
+  Dashboard: Dashboard,
+  Img: Img
+});
 
 const styles = StyleSheet.create({
   container: {
